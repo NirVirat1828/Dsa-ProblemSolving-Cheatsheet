@@ -149,88 +149,107 @@ CopyEdit
 ---
 
 If you keep this list and **write each code from scratch at least twice** in the next week, you’ll remember both the logic and the syntax for similar problems in the future.
-📌 LeetCode Problems Covered
+# 📚 LeetCode Problem Patterns for Mastery
 
-Longest Substring Without Repeating Characters
+To truly remember both the logic and syntax for common coding problems, write solutions for each problem from scratch at least **twice** in the next week. This focused repetition will help you internalize key techniques and avoid common mistakes in future interviews or coding challenges.
 
-Key Idea: Use a sliding window + HashMap (or array) to track characters and their last seen positions.
+---
 
-Pattern: Strings, HashMap, two-pointer window adjustment.
+## 📌 Problems & Key Patterns
 
-Similar Problems:
+### 1. Longest Substring Without Repeating Characters
 
-Longest Substring with At Most K Distinct Characters
+- **Core Idea:**  
+  Use a **sliding window** and a `HashMap` (or array) to track each character's last seen position.
+- **Pattern:**  
+  Strings, HashMap, two-pointer window adjustment.
 
-Substring with Concatenation of All Words
+**Practice Similar Problems:**
+- Longest Substring with At Most K Distinct Characters
+- Substring with Concatenation of All Words
 
-Minimum Window Substring
+---
 
-Key Idea: Sliding window with character frequency map. Expand right pointer to include required chars, shrink left pointer to get minimum length.
+### 2. Minimum Window Substring
 
-Pattern: Strings, HashMap, sliding window with min length tracking.
+- **Core Idea:**  
+  Use a **sliding window** and a frequency map to cover all target characters.  
+  Expand the right pointer to include required chars; shrink the left pointer to minimize window length.
+- **Pattern:**  
+  Strings, HashMap, sliding window with min length tracking.
 
-Similar Problems:
+**Practice Similar Problems:**
+- Smallest Substring of All Characters
+- Permutation in String
 
-Smallest Substring of All Characters
+---
 
-Permutation in String
+### 3. First Unique Character in a String
 
-First Unique Character in a String
+- **Core Idea:**  
+  Store character frequencies in a `HashMap` or array, then scan for the first char with frequency == 1.
+- **Mistake to Avoid:**  
+  If using a queue, remember to update frequencies correctly to avoid stale results.
 
-Key Idea: Store frequencies in a HashMap or array, then find the first char with frequency = 1.
+**Practice Similar Problems:**
+- Find the Difference
+- Ransom Note
 
-Mistake to Avoid: Your queue-based approach missed updating frequencies.
+---
 
-Similar Problems:
+### 4. Intersection of Two Arrays II
 
-Find the Difference
+- **Approach 1:**  
+  Use a `HashMap` to store frequencies from one array, then match and reduce with the second array.
+- **Approach 2 (Two-Pointer):**  
+  Sort both arrays, then move pointers to collect matches efficiently.
 
-Ransom Note
+- **Pattern:**  
+  Arrays, HashMap, sorting + two pointers.
 
-Intersection of Two Arrays II
+**Practice Similar Problems:**
+- Intersection of Two Arrays I
+- Find Common Elements in Three Sorted Arrays
 
-Approach 1: HashMap to store frequencies from one array, then match with second array.
+---
 
-Approach 2 (Two-Pointer): Sort both arrays, move pointers based on comparison.
+## 📌 Java Concepts & Techniques
 
-Pattern: Arrays, HashMap, sorting + two pointers.
+### HashMap with ASCII Keys
+- Use: `map.put((int) ch, value);`
+- `(int) ch` converts a character to its ASCII integer value for direct mapping.
 
-Similar Problems:
+### Queue Implementations in Java
+- Common: `LinkedList`, `PriorityQueue`, `ArrayDeque`
+- Methods:
+  - `add(e)`, `offer(e)` – Insert
+  - `poll()` – Remove head (returns null if empty)
+  - `remove()` – Remove head (throws exception if empty)
+  - `peek()` – Get head without removing
+  - `isEmpty()` – Check if empty
 
-Intersection of Two Arrays I
+---
 
-Find Common Elements in Three Sorted Arrays
+## 📌 Problem-Solving Patterns to Practice
 
-📌 Java Concepts Discussed
+| Pattern                  | When to Use                | Example Problems                              |
+|--------------------------|----------------------------|-----------------------------------------------|
+| **Sliding Window**       | Substrings/subarrays, O(n) | Longest Substring Without Repeating Characters|
+| **Two Pointers**         | Sorted arrays/comparison   | Intersection of Two Arrays II                 |
+| **HashMap Frequency**    | Counting occurrences       | First Unique Character in String              |
+| **Queue (FIFO Order)**   | Track processing order     | Level-order traversal, First Unique Char      |
 
-HashMap with ASCII as key
+---
 
-Use map.put((int) ch, value);
+## 📝 Tips for Mastery
 
-(int) ch gives ASCII value of character.
+- **Write from scratch, twice:** Repetition is the key to solidifying your understanding.
+- **Track mistakes:** Note any common pitfalls (e.g., forgetting to update frequencies).
+- **Practice variants:** Tackle similar problems to reinforce pattern recognition.
+- **Review Java collections:** Understand implementation differences and method behaviors for real-world coding.
 
-Queue in Java (Collection Framework)
+---
 
-Common Implementations: LinkedList, PriorityQueue, ArrayDeque
-
-Common Methods:
-
-add(e), offer(e) → insert
-
-poll() → remove head or return null
-
-remove() → remove head or throw exception if empty
-
-peek() → get head without removing
-
-isEmpty() → check if empty
-
-📌 Problem-Solving Patterns to Practice
-
-Sliding Window: When dealing with substrings/subarrays and need optimal O(n) time.
-
-Two Pointers: When arrays are sorted or can be sorted for easier comparison.
-
-HashMap Frequency Counting: When tracking occurrences of elements for matches.
+**Happy Coding!** 🚀
 
 Queue for Order Tracking: When needing FIFO-based processing of indexes/elements.
