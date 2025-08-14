@@ -149,4 +149,88 @@ CopyEdit
 ---
 
 If you keep this list and **write each code from scratch at least twice** in the next week, you’ll remember both the logic and the syntax for similar problems in the future.
+📌 LeetCode Problems Covered
 
+Longest Substring Without Repeating Characters
+
+Key Idea: Use a sliding window + HashMap (or array) to track characters and their last seen positions.
+
+Pattern: Strings, HashMap, two-pointer window adjustment.
+
+Similar Problems:
+
+Longest Substring with At Most K Distinct Characters
+
+Substring with Concatenation of All Words
+
+Minimum Window Substring
+
+Key Idea: Sliding window with character frequency map. Expand right pointer to include required chars, shrink left pointer to get minimum length.
+
+Pattern: Strings, HashMap, sliding window with min length tracking.
+
+Similar Problems:
+
+Smallest Substring of All Characters
+
+Permutation in String
+
+First Unique Character in a String
+
+Key Idea: Store frequencies in a HashMap or array, then find the first char with frequency = 1.
+
+Mistake to Avoid: Your queue-based approach missed updating frequencies.
+
+Similar Problems:
+
+Find the Difference
+
+Ransom Note
+
+Intersection of Two Arrays II
+
+Approach 1: HashMap to store frequencies from one array, then match with second array.
+
+Approach 2 (Two-Pointer): Sort both arrays, move pointers based on comparison.
+
+Pattern: Arrays, HashMap, sorting + two pointers.
+
+Similar Problems:
+
+Intersection of Two Arrays I
+
+Find Common Elements in Three Sorted Arrays
+
+📌 Java Concepts Discussed
+
+HashMap with ASCII as key
+
+Use map.put((int) ch, value);
+
+(int) ch gives ASCII value of character.
+
+Queue in Java (Collection Framework)
+
+Common Implementations: LinkedList, PriorityQueue, ArrayDeque
+
+Common Methods:
+
+add(e), offer(e) → insert
+
+poll() → remove head or return null
+
+remove() → remove head or throw exception if empty
+
+peek() → get head without removing
+
+isEmpty() → check if empty
+
+📌 Problem-Solving Patterns to Practice
+
+Sliding Window: When dealing with substrings/subarrays and need optimal O(n) time.
+
+Two Pointers: When arrays are sorted or can be sorted for easier comparison.
+
+HashMap Frequency Counting: When tracking occurrences of elements for matches.
+
+Queue for Order Tracking: When needing FIFO-based processing of indexes/elements.
