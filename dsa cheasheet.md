@@ -253,3 +253,127 @@ To truly remember both the logic and syntax for common coding problems, write so
 **Happy Coding!** 🚀
 
 Queue for Order Tracking: When needing FIFO-based processing of indexes/elements.
+# 🔹 Binary Search Cheatsheet for LeetCode-Style Problems
+
+---
+
+## 1. Classic Binary Search
+
+**Pattern:** Sorted array → search for element.
+
+**Code skeleton:**
+```cpp
+while (left <= right) {
+    int mid = left + (right - left) / 2;
+    if (nums[mid] == target) return mid;
+    else if (nums[mid] < target) left = mid + 1;
+    else right = mid - 1;
+}
+```
+**Trick:** Always move `left = mid + 1` or `right = mid - 1` → avoid infinite loop.
+
+---
+
+## 2. Find First/Last Occurrence (Duplicates)
+
+**Pattern:** Sorted array with duplicates → find boundary.
+
+- **First occurrence:**  
+  If `nums[mid] == target`, move `right = mid - 1`.
+
+- **Last occurrence:**  
+  If `nums[mid] == target`, move `left = mid + 1`.
+
+---
+
+## 3. Find Minimum in Rotated Sorted Array
+
+**Pattern:** Array is rotated, no duplicates.
+
+**Trick:** Compare `nums[mid]` with `nums[right]`.
+
+- If `nums[mid] > nums[right]` → min is in right half → `left = mid + 1`.
+- Else → min is in left half → `right = mid`.
+
+**End:** `left` is min index.
+
+---
+
+## 4. Search in Rotated Sorted Array ([LeetCode 33](https://leetcode.com/problems/search-in-rotated-sorted-array/))
+
+Pivot divides array into 2 sorted halves.
+
+**Two approaches:**
+- Find pivot → then normal binary search in correct half.
+- Modified binary search (no pivot):
+
+```cpp
+if (nums[left] <= nums[mid]) { // left half sorted
+    if (nums[left] <= target && target < nums[mid])
+        right = mid - 1;
+    else
+        left = mid + 1;
+} else { // right half sorted
+    if (nums[mid] < target && target <= nums[right])
+        left = mid + 1;
+    else
+        right = mid - 1;
+}
+```
+
+---
+
+## 5. Find Peak Element ([LeetCode 162](https://leetcode.com/problems/find-peak-element/))
+
+Array has ups & downs, find any peak.
+
+**Trick:** Compare `nums[mid]` with `nums[mid+1]`.
+
+- If `nums[mid] > nums[mid+1]` → peak on left → `right = mid`.
+- Else → peak on right → `left = mid + 1`.
+
+**End:** `left` is peak index.
+
+---
+
+## 6. First Bad Version ([LeetCode 278](https://leetcode.com/problems/first-bad-version/))
+
+Boolean sequence `[false, false, …, true, true]`.
+
+**Trick:** Search for first true.
+
+- If `isBadVersion(mid)` → `right = mid`.
+- Else → `left = mid + 1`.
+
+**End:** `left` is first bad.
+
+---
+
+## 7. Binary Search on Answer (Range Problems)
+
+When array not directly sorted but answer space is monotonic (true/false).
+
+**Examples:**  
+Minimum days to complete jobs.  
+Capacity to ship packages.
+
+**Template:**
+```cpp
+while (left < right) {
+    int mid = left + (right - left) / 2;
+    if (check(mid)) right = mid;
+    else left = mid + 1;
+}
+```
+
+---
+
+## 🔑 Key Rules to Remember
+
+- Always avoid infinite loop → use `mid + 1` or `mid - 1`.
+- Think in terms of sorted halves.
+- Check monotonic property (true/false switch).
+- When searching boundary (first/last/minimum) → usually shrink `right = mid`.
+- When searching exact element → shrink with ±1.
+
+✅ If you keep these patterns in your head, **90% of binary search problems** (rotated arrays, peaks, bad version, duplicates, search space problems) can be solved quickly.
