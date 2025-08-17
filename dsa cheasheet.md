@@ -377,3 +377,113 @@ while (left < right) {
 - When searching exact element → shrink with ±1.
 
 ✅ If you keep these patterns in your head, **90% of binary search problems** (rotated arrays, peaks, bad version, duplicates, search space problems) can be solved quickly.
+
+# LeetCode Matrix Problems Cheat Sheet
+
+---
+
+## 1. Spiral Matrix
+
+**👉 Problem:** Print matrix elements in spiral order.
+
+### Algorithm:
+
+- Initialize 4 boundaries: `top=0`, `bottom=m-1`, `left=0`, `right=n-1`.
+- Loop while `top <= bottom && left <= right`:
+  - Traverse left → right (top row). `top++`.
+  - Traverse top → bottom (right col). `right--`.
+  - If still valid: traverse right → left (bottom row). `bottom--`.
+  - If still valid: traverse bottom → top (left col). `left++`.
+- Collect elements until all are visited.
+
+### Snippet:
+```java
+while (top <= bottom && left <= right) {
+    for (int j = left; j <= right; j++) res.add(matrix[top][j]);
+    top++;
+    for (int i = top; i <= bottom; i++) res.add(matrix[i][right]);
+    right--;
+    if (top <= bottom)
+        for (int j = right; j >= left; j--) res.add(matrix[bottom][j]);
+    bottom--;
+    if (left <= right)
+        for (int i = bottom; i >= top; i--) res.add(matrix[i][left]);
+    left++;
+}
+```
+
+---
+
+## 2. Word Search (DFS + Backtracking)
+
+**👉 Problem:** Find if a word exists in the grid.
+
+### Algorithm:
+
+- For each cell in the grid, start DFS if it matches first character.
+- In DFS:
+  - If out of bounds / mismatch → return false.
+  - If all chars matched → return true.
+  - Mark current cell as visited (temporarily change char).
+  - Recurse in 4 directions.
+  - Backtrack (restore char).
+- Return true if any DFS succeeds.
+
+### Snippet:
+```java
+boolean dfs(char[][] board, String word, int i, int j, int idx) {
+    if (idx == word.length()) return true;
+    if (i < 0 || j < 0 || i >= board.length || j >= board[0].length
+        || board[i][j] != word.charAt(idx)) return false;
+    
+    char temp = board[i][j];
+    board[i][j] = '#'; // mark visited
+    
+    boolean found = dfs(board, word, i+1,j,idx+1) ||
+                    dfs(board, word, i-1,j,idx+1) ||
+                    dfs(board, word, i,j+1,idx+1) ||
+                    dfs(board, word, i,j-1,idx+1);
+    
+    board[i][j] = temp; // backtrack
+    return found;
+}
+```
+
+---
+
+## 3. Rotate Image (90° Clockwise)
+
+**👉 Problem:** Rotate n x n matrix in-place.
+
+### Algorithm:
+
+- Transpose the matrix (swap `matrix[i][j]` ↔ `matrix[j][i]`).
+- Reverse each row.
+
+### Snippet:
+```java
+// transpose
+for (int i = 0; i < n; i++) {
+    for (int j = i; j < n; j++) {
+        int temp = matrix[i][j];
+        matrix[i][j] = matrix[j][i];
+        matrix[j][i] = temp;
+    }
+}
+// reverse rows
+for (int i = 0; i < n; i++) {
+    for (int j = 0, k = n-1; j < k; j++, k--) {
+        int temp = matrix[i][j];
+        matrix[i][j] = matrix[i][k];
+        matrix[i][k] = temp;
+    }
+}
+```
+
+---
+
+## 📝 Quick Memory Hooks
+
+- **Spiral Matrix** → "Boundaries shrink step by step."
+- **Word Search** → "DFS + Backtrack, mark visited, restore later."
+- **Rotate Image** → "Transpose + Reverse Rows."
